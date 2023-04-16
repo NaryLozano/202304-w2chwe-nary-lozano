@@ -24,16 +24,18 @@ class World {
 
     for (let positionX = 0; positionX < 2; positionX++) {
       for (let positionY = 0; positionY < 2; positionY++) {
-        if (
-          board[positionRow - positionX][positionColumn - positionY].isAlive
-        ) {
-          neighbours++;
-        }
+        if (positionX && positionY !== 0) {
+          if (
+            board[positionRow - positionX][positionColumn - positionY].isAlive
+          ) {
+            neighbours++;
+          }
 
-        if (
-          board[positionRow + positionX][positionColumn + positionY].isAlive
-        ) {
-          neighbours++;
+          if (
+            board[positionRow + positionX][positionColumn + positionY].isAlive
+          ) {
+            neighbours++;
+          }
         }
 
         if (
