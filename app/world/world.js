@@ -18,6 +18,47 @@ class World {
 
     return board;
   }
+
+  checkNeighbourhood(board, positionRow, positionColumn) {
+    let neighbours = 0;
+
+    for (let positionX = 0; positionX < 2; positionX++) {
+      for (let positionY = 0; positionY < 2; positionY++) {
+        if (
+          board[positionRow - positionX][positionColumn - positionY].isAlive
+        ) {
+          neighbours++;
+        }
+
+        if (
+          board[positionRow + positionX][positionColumn + positionY].isAlive
+        ) {
+          neighbours++;
+        }
+
+        if (
+          board[positionRow][positionColumn] !==
+            board[positionRow - positionX][positionColumn - positionY] ||
+          board[positionRow][positionColumn] !==
+            board[positionRow - positionX][positionColumn - positionY]
+        ) {
+          if (
+            board[positionRow + positionX][positionColumn - positionY].isAlive
+          ) {
+            neighbours++;
+          }
+
+          if (
+            board[positionRow - positionX][positionColumn + positionY].isAlive
+          ) {
+            neighbours++;
+          }
+        }
+      }
+    }
+
+    return "Total neighbours:  " + neighbours;
+  }
 }
 
 export default World;
