@@ -33,9 +33,9 @@ class World {
         const neighbourRow = positionRow + positionX;
         const neighbourColumn = positionColumn + positionX;
         if (
-          neighbourRow <= 0 &&
+          neighbourRow >= 0 &&
           neighbourRow < totalRows &&
-          neighbourColumn <= 0 &&
+          neighbourColumn >= 0 &&
           neighbourColumn < totalColumns
         ) {
           if (board[neighbourRow][neighbourColumn].isAlive) {
