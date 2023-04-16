@@ -1,11 +1,11 @@
 class Cell {
   isAlive = this.setState(2);
-  rowIndex;
-  columnIndex;
+  positionRow;
+  positionColumn;
 
-  constructor(rowIndex, columnIndex) {
-    this.rowIndex = rowIndex;
-    this.columnIndex = columnIndex;
+  constructor(positionRow, positionColumn) {
+    this.positionRow = positionRow;
+    this.positionColumn = positionColumn;
   }
 
   setState(max) {
@@ -18,6 +18,13 @@ class Cell {
     if (getRandom === 0) {
       this.isAlive = false;
       return this.isAlive;
+    }
+  }
+
+  killCell(board) {
+    if (board[this.positionRow][this.positionColumn]) {
+      board[this.positionRow][this.positionColumn].isAlive = false;
+      return board[this.positionRow][this.positionColumn].isAlive;
     }
   }
 }
