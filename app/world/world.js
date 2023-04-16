@@ -21,38 +21,24 @@ class World {
 
   checkNeighbourhood(board, positionRow, positionColumn) {
     let neighbours = 0;
+    const totalRows = board.length;
+    const totalColumns = board[0].length;
 
-    for (let positionX = 0; positionX < 2; positionX++) {
-      for (let positionY = 0; positionY < 2; positionY++) {
-        if (positionX && positionY !== 0) {
-          if (
-            board[positionRow - positionX][positionColumn - positionY].isAlive
-          ) {
-            neighbours++;
-          }
-
-          if (
-            board[positionRow + positionX][positionColumn + positionY].isAlive
-          ) {
-            neighbours++;
-          }
+    for (let positionX = -1; positionX <= 1; positionX++) {
+      for (let positionY = -1; positionY <= 1; positionY++) {
+        if (positionX === 0 && positionY === 0) {
+          continue;
         }
 
+        const neighbourRow = positionRow + positionX;
+        const neighbourColumn = positionColumn + positionX;
         if (
-          board[positionRow][positionColumn] !==
-            board[positionRow - positionX][positionColumn - positionY] ||
-          board[positionRow][positionColumn] !==
-            board[positionRow - positionX][positionColumn - positionY]
+          neighbourRow <= 0 &&
+          neighbourRow < totalRows &&
+          neighbourColumn <= 0 &&
+          neighbourColumn < totalColumns
         ) {
-          if (
-            board[positionRow + positionX][positionColumn - positionY].isAlive
-          ) {
-            neighbours++;
-          }
-
-          if (
-            board[positionRow - positionX][positionColumn + positionY].isAlive
-          ) {
+          if (board[neighbourRow][neighbourColumn].isAlive) {
             neighbours++;
           }
         }
